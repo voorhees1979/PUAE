@@ -1,0 +1,151 @@
+PUAE 2.1.00
+============
+PUAE tries to continue where E-UAE left off..
+PUAE versioning is based on the merged WinUAE version..
+
+All is done by:
+	Mustafa 'GnoStiC' TUFAN (mustafa.tufan@gmail.com)
+
+with OS-X fixes from:
+	Steven 'xaind' Saunders
+
+Thanks for the morale support:
+	Dom 'Hungry Horace' Cresswell
+	Christopher 'FOL' Follett
+	Andrew 'Truck' Holland
+
+
+Richard Drummond's E-UAE 0.8.29
+============
+(Left for Legacy info)
+E-UAE is an Amiga emulator, a program that allows you to run software
+designed for Amiga computers on other platforms, such as Linux or Mac
+OS. It is based on UAE, the original Ubiquitous Amiga Emulator, and
+WinUAE, the Windows version of UAE. While it owes a huge debt to these
+two great projects, E-UAE diverges from both, aiming to improve
+performance and features on a variety of host platforms.
+
+The name E-UAE stemmed from the fact that this project needed a name,
+and, since it was an 'experimental' version of UAE, everybody was
+calling it 'Experimental' UAE. While I have long since accepted that
+moniker, I still don't intend the 'E' to mean anything it particular.
+Although the project is currently 'experimental' - that is, it is a
+long way from being anything close to finished - it should still be
+robust enough to use.
+
+E-UAE currently builds and runs - with varying degrees of supported
+features - on Unix and Unix-like platforms (including Linux, Solaris
+and Mac OS X), BeOS, AmigaOS and clones (including AmigaOS 3.x,
+AmigaOS 4.0, MorphOS and AROS), and Windows (with Cygwin or MinGW32).
+
+E-UAE is open-source software and is made available under the terms of
+the GPL. See the COPYING file included with the E-UAE archive for
+details.
+
+E-UAE is based on the work of dozens of contributors including Bernd
+Schmidt (the original author and maintainer of UAE), Bernie Meyer (the
+author of the x86 JIT compiler), Toni Wilen (the current maintainer of
+WinUAE), and many more.
+
+Note that to make full use of E-UAE you will need access to an image
+of some version of the Amiga Kickstart ROM (although E-UAE does include
+a ROM emulation which may work with some old games). The Amiga
+Kickstart ROMs are copyrighted material and may not be freely
+distributed (so don't ask me for a copy). If you don't have an Amiga
+from which you can legally make a ROM image, a selection of ROM images
+are available for purchase online from Cloanto (publishers of the
+Amiga Forever distribution). See http://www.amigaforever.com/
+
+What's new since PUAE 0.0.0
+======================
+* Some many changes that i can't begin to mention here and now.
+
+
+What's new since 0.8.29-WIP4
+============================
+
+New features:
+* Added a command-line tool for generating blank hardfile images,
+  called make_hdf
+* Support for IPF floppy images now supported on OS X (and officially
+  on AMD64/Linux now that libcapsimage is publically available). Go to
+  http://www.softpres.org/ to download the plug-in.
+* X-Arcade joystick supported (thanks to Robert Hurst for the patch).
+* Build scripts now include a compile-time option --disable-fpu to
+  disable building of FPU emulation.
+
+Performance improvements:
+* Some small custom chip and blitter tweaks merged from WinUAE 1.4.3.
+* Some minor performance optimizations to blitter emulation, floppy
+  controller emulation and rendering code. (Thanks to Mustafa Tufan,
+  developer of PSP and GP2x ports of E-UAE, for a couple of these).
+
+Bug fixes:
+* Version 0.8.29-WIP4 broke the interrupt controller emulation. Fixed.
+  This also makes Action Replay cartridge emulation work again.
+* HDToolbox would hang when scanning for hard drives. Mostly fixed (I
+  still have one unreproducible report of HDToolbox hanging).
+* Hardfile emulation will no longer leak threads following a reset
+  This also fixes crashes on exit on AmigaOS and clone hosts.
+* Building on MacOS X no longer fails when building supporting tools
+  like readdisk.
+* Exiting E-UAE on OS X when started from Hi-Toro would cause 'load
+  config file' dialog to be displayed. Fixed.
+* BeOS sound driver was broken in recent changes to audio layer. Now
+  fixed (fingers crossed).
+
+Other:
+
+* Removed support for 8-bit sound (since the official UAE did so).
+
+Still to do
+===========
+
+The following features of UAE and/or WinUAE are not yet supported yet in PUAE. These include:
+* Catweasel support (i don't have one so i can't test)
+
+
+Known problems
+==============
+
+Some significant misfeatures that I know about and am/will be working
+to fix (eventually):
+
+* Only platforms supporting the GTK+ toolkit have a useable
+  configuration GUI (and the GTK+ GUI is still incomplete). However,
+  Mac OS X users may like to try Daniel Pimley's graphical front-end,
+  Hi Toro. See http://www.pimley.net/projects/.
+* JIT direct memory access only works on Linux/x86 and, by default,
+  you may only emulate up to 32MB of direct ZIII RAM; select more than
+  that and the JIT will fall back on indirect memory access and hence
+  will be slower. This is due to a system limit on the size of a POSIX
+  shared memory segment. You can overcome this limit my modifying the
+  value of the procfs setting, /proc/sys/kernel/shmmax.
+* Virtual filesystem doesn't support platforms which use UTF-8 for
+  filenames (e.g., OS X, Linux with a UTF-8 locale, etc.). Filenames
+  with characters outside of the core ASCII range will be mangled.
+* The build scripts are a horrible, unmaintainable mess.
+* Full documentation is lacking.
+
+
+Using PUAE
+===========
+Documentation is a work-in-progress. See the docs directory.
+
+
+Compiling PUAE yourself
+========================
+See the docs/compiling.txt file for more information about building PUAE.
+
+
+GIT
+===
+
+
+Contact
+=======
+See http://www.freelists.org/list/uae for details of a mailing list
+discussing problems with and development of PUAE.
+
+OR visit;
+http://eab.abime.net/forumdisplay.php?f=54
