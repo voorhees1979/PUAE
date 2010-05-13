@@ -808,7 +808,7 @@ int save_state (const TCHAR *filename, const TCHAR *description)
 		}
 	}
 #endif
-
+#ifdef CD32
 	for (i = 0; i < 10; i++) {
 		dst = save_cd (i, &len);
 		if (dst) {
@@ -816,6 +816,7 @@ int save_state (const TCHAR *filename, const TCHAR *description)
 			save_chunk (f, dst, len, name, 0);
 		}
 	}
+#endif
 
 	/* add fake END tag, makes it easy to strip CONF and LOG hunks */
 	/* move this if you want to use CONF or LOG hunks when restoring state */

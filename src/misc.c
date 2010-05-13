@@ -746,9 +746,9 @@ uae_u8 *save_log (int bootlog, int *len)
 
         if (!logging_started)
                 return NULL;
-        f = _tfopen (bootlog ? LOG_BOOT : LOG_NORMAL, "rb");
-        if (!f)
-                return NULL;
+        f = fopen (bootlog ? LOG_BOOT : LOG_NORMAL, "rb");
+	if (!f)
+		return NULL;
         fseek (f, 0, SEEK_END);
         size = ftell (f);
         fseek (f, 0, SEEK_SET);
