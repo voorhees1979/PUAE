@@ -404,3 +404,9 @@ void target_default_options (struct uae_prefs *p)
 {
 	p->use_gl = 1;
 }
+
+void target_startup_sequence (struct uae_prefs *p)
+{ 
+        scan_roms (1);
+}
+

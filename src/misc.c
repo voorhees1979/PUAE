@@ -763,3 +763,27 @@ uae_u8 *save_log (int bootlog, int *len)
         }
         return dst;
 }
+
+// --- win32gui.c
+#define MAX_ROM_PATHS 10
+int scan_roms (int show)
+{
+        TCHAR path[MAX_DPATH];
+        static int recursive;
+        int id, i, ret, keys, cnt;
+        TCHAR *paths[MAX_ROM_PATHS];
+
+        if (recursive)
+                return 0;
+        recursive++;
+
+//FIXME:
+        cnt = 0;
+        ret = 0;
+        for (i = 0; i < MAX_ROM_PATHS; i++)
+                paths[i] = NULL;
+
+end:
+        recursive--;
+        return ret;
+}

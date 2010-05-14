@@ -910,6 +910,7 @@ static int real_main2 (int argc, char **argv)
 		init_m68k(); /* must come after reset_frame_rate_hack (); */
 
 		gui_update ();
+		target_startup_sequence(&currprefs);
 
 		if (graphics_init ()) {
 #ifdef DEBUGGER

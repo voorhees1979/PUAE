@@ -115,3 +115,9 @@ int target_parse_option (struct uae_prefs *p, const char *option, const char *va
 void target_default_options (struct uae_prefs *p)
 {
 }
+
+void target_startup_sequence (struct uae_prefs *p)
+{ 
+        scan_roms (1);
+}
+
